@@ -30,13 +30,14 @@ def split_array(arr, N):
     upper_array = arr[N//2 + 1:]
   return lower_array, upper_array
 
-def main():
+# Main function to calculate all three quartiles of an array
+def quartiles(data, N):
+  data.sort()
   # Pull number of elements in the array, N, from STDIN
-  N = int(input("Number of elements in array"))
   N_updated = N // 2
 
   # Pull in the array, full_array, from STDIN
-  full_array = sorted(input("String of N spaced integers").split())
+  full_array = data
   full_array = [int(num) for num in full_array]
 
   # Split full array into lower and upper halves to find (Q1) and (Q3)
@@ -46,10 +47,15 @@ def main():
   quartile_one = find_median(lower_array, N_updated)
   quartile_two = find_median(full_array, N)
   quartile_three = find_median(upper_array, N_updated)
+  return [quartile_one, quartile_two, quartile_three]
 
   # Print results to STDOUT
-  print(quartile_one, quartile_two, quartile_three)
+  return [quartile_one, quartile_two, quartile_three]
   
- if __name__ == "__main__":
-   main()
+if __name__ == "__main__":
+  n = int(input("Number of elements in array"))
+  data = list(map(int, input().rstrip().split()))
+  quartile_list = quartiles(data, n)
+  print(quartile_list)
+  
 
